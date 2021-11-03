@@ -503,8 +503,12 @@ EthermonData.prototype.STATS_INDEX_SP = 5;
                 <i aria-hidden="true" class="close icon" id="simulatorClose"></i>
                 <div class="page-container">
                     <span id="simulationResultTitle">-- Battle Simulation --</span>
+                    <span id="simulationLadder1" class="simulationBattleType">Ladder1</span> | 
+                    <span id="simulationLadder2" class="simulationBattleType">Ladder2</span> | 
                     <span id="simulationLadder3" class="simulationBattleType">Ladder3</span> | 
+                    <span id="simulationLadder4" class="simulationBattleType">Ladder4</span> | 
                     <span id="simulationLadder5" class="simulationBattleType">Ladder5</span>
+                    <span id="simulationLadder6" class="simulationBattleType">Ladder6</span>
                     <div id="simulationResultText"></div>
                 </div>
             </div>
@@ -540,14 +544,16 @@ EthermonData.prototype.STATS_INDEX_SP = 5;
       hideSimulationResult();
     });
     document
-      .querySelector("#simulationLadder3")
-      .addEventListener("click", () => {
-        startSimulation(battleTypes.Ladder3);
-      });
-    document
-      .querySelector("#simulationLadder5")
-      .addEventListener("click", () => {
-        startSimulation(battleTypes.Ladder5);
+      .querySelectorAll(".simulationBattleType")
+      .forEach(element => {
+        element.addEventListener("click", () => {
+          battleTypes.forEach(battleType => {
+            if (battleType.Name === element.textContent) {
+              startSimulation(battleType);
+              return;
+            }
+          });
+        });
       });
   }
 

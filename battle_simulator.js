@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ethermon Battle Simulator
 // @namespace    https://etheremon-tools.firebaseapp.com/userscript/battle_simulator.js
-// @version      1.0.2021102901
+// @version      1.0.2021110301
 // @description  Ethermon Battle Simulator
 // @author       natoris
 // @match        https://ethermon.io/*

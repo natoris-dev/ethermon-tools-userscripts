@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ethermon Battle Simulator
 // @namespace    https://etheremon-tools.firebaseapp.com/userscript/battle_simulator.js
-// @version      1.0.2021110301
+// @version      1.0.2021110302
 // @description  Ethermon Battle Simulator
 // @author       natoris
 // @match        https://ethermon.io/*
@@ -507,7 +507,7 @@ EthermonData.prototype.STATS_INDEX_SP = 5;
                     <span id="simulationLadder2" class="simulationBattleType">Ladder2</span> | 
                     <span id="simulationLadder3" class="simulationBattleType">Ladder3</span> | 
                     <span id="simulationLadder4" class="simulationBattleType">Ladder4</span> | 
-                    <span id="simulationLadder5" class="simulationBattleType">Ladder5</span>
+                    <span id="simulationLadder5" class="simulationBattleType">Ladder5</span> | 
                     <span id="simulationLadder6" class="simulationBattleType">Ladder6</span>
                     <div id="simulationResultText"></div>
                 </div>
@@ -547,12 +547,9 @@ EthermonData.prototype.STATS_INDEX_SP = 5;
       .querySelectorAll(".simulationBattleType")
       .forEach(element => {
         element.addEventListener("click", () => {
-          battleTypes.forEach(battleType => {
-            if (battleType.Name === element.textContent) {
-              startSimulation(battleType);
-              return;
-            }
-          });
+          const ladderName = element.textContent;
+          const battleTypeKey = Object.keys(battleTypes).find((key) => battleTypes[key].Name === ladderName);
+          startSimulation(battleTypes[battleTypeKey]);
         });
       });
   }
